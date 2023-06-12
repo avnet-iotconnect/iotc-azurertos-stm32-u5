@@ -8,14 +8,20 @@ This guide currently only supports Windows 64-bit.
 
 ## Required Software
 
-* Download and install the [STM32CubeProgrammer ](https://www.st.com/en/development-tools/stm32cubeprog.html) for STM32.<br>(Ensure the 64-bit version is installed to the default  directory ("C:\Program Files\")
+* Download and install the [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) for STM32.
+  * Ensure that the installed version is 2.10 or newer.
+  * Ensure the 64-bit version is installed to the default  directory "C:\Program Files\"
 * A serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), is required for the next steps. 
 Configure settings per the screenshot below:
 
 ![Tera Term Serial Settings](media/teraterm-settings.png "Tera Term Serial Settings")
 
 ## Cloud Account Setup
-An IoTConnect account is required to continue this guide. If you need to create an account, a free 2-month subscription is available.  Please follow the [Creating a New IoTConnect Account](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/subscription/subscription.md) guide and return to this guide once complete.
+An IoTConnect account is required to continue this guide.
+If you need to create an account, a free 2-month subscription is available.
+Please follow the 
+[Creating a New IoTConnect Account](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/subscription/subscription.md)
+guide and return to this guide once complete.
 
 ## Firmware Setup
 
@@ -27,22 +33,22 @@ Running this script will make it so that only TrustZone enabled applications are
 * Note: After completion of this demo, the *trust-zone-disable.bat* batch script can be run to once again allow non-TrustZone applications to be executed. Do not run this now.
 
 ## Device Configuration
-* Ensure your serial termainal application is running.
+* Ensure your serial terminal application is running.
 * Press the RST button on the board and look for the "X-CUBE-AZURE" title block. This may take 1 or two presses of the button. (The reset button is the black button labled "RST" next to the only blue button on the top of the board.)
 * In your terminal application enter "y" when prompted to set device configuration. You will only need to set values 1-4.
   * Configure your WiFi SSID (Network Name) by pressing 1
   * Configure your WiFi Password by pressing 2
   * Set the values for your CPID and Environment by pressing 3 and 4 respectively. These values can be located 
-in  the IoTConnect WebUI on the *Key Vault* page. Navigate there using the image below:<br>![Key Vault](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/assets/key_vault.png "Key Vault")
-  * The DUID value should be left unset. A DUID unique to your device will be generated and displayed on the console during startup.
-  * The Symetric key should be left unset. This will allow for authentication using STSAFE with x509 authentication.
-  * Press '0' to write the configuration/
-  * Press the Reset button
-* After configuring your device's settings, reset the device and monitor the serial terminal for information similar to the screenshot below
+in  the IoTConnect WebUI on the *Key Vault* page. 
+Navigate there using the image below:<br>![Key Vault](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/assets/key_vault.png "Key Vault")
+  * The DUID value should be left unset. A DUID unique to your device will be generated and displayed on the console during startup
+  * The Symmetric key should be left unset. This will allow for authentication using STSAFE with x509 authentication
+  * Press '0' to write the configuration. This option will also reset the board.
+* After configuring your device's settings, monitor the serial terminal for information similar to the screenshot below
   ![Certificate and DUID Screemshot](media/duid-and-certifciate-console.png "Certificate and DUID Screemshot") 
 * A device fingerprint needs to be generated from the certificate.
   * Copy the Device Certificate from the console, including the BEGIN and END lines.
-  * Paste the contents into the X509 Cert field on  [this web site](https://www.samltool.com/fingerprint.php). (Optionally you can use openssl to print the device fingerprint, but this is outside the scope of this guide.)
+  * Paste the contents into the X509 Cert field at [this web site](https://www.samltool.com/fingerprint.php). (Optionally you can use openssl to print the device fingerprint, but this is outside the scope of this guide.)
   * Leave the "Algorithum" selection at the default, press "Calculate Fingerprint" and copy/save the Fingerprint field for later use.
 * Copy the generated DUID displayed and save for later use.
 
