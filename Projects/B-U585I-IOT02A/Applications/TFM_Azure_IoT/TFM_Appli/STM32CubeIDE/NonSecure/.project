@@ -31,19 +31,14 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>IoTConnect</name>
+			<type>2</type>
+			<locationURI>PARENT-7-PROJECT_LOC/IoTConnect</locationURI>
+		</link>
+		<link>
 			<name>VERSION</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/NonSecure/VERSION</locationURI>
-		</link>
-		<link>
-			<name>iotc-azrtos-sdk</name>
-			<type>2</type>
-			<locationURI>PARENT-7-PROJECT_LOC/iotc-azrtos-sdk</locationURI>
-		</link>
-		<link>
-			<name>stsafe-tfm-sample</name>
-			<type>2</type>
-			<locationURI>PARENT-7-PROJECT_LOC/stsafe-tfm-sample</locationURI>
 		</link>
 		<link>
 			<name>Doc/README.md</name>

@@ -2,3 +2,6 @@
 !.gitignore
 !/IoTConnect
 !/Projects
+!/*.md
+!/media
+!/*.bat
