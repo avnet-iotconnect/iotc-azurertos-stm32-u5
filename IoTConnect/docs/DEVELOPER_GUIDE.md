@@ -5,14 +5,16 @@ This document aims to provide a step-by-step-guide way to test and evaluate the
 with IoTConnect.
 
 
-### Project Build Setup
+### Project Build
 
 The software must be built and programmed onto the board by using the following steps:
 
 * If on Windows, download and install either [Git Bash](https://git-scm.com/downloads) (Select to install Git Bash in the Setup Wizard). 
 [MSYS2](https://www.msys2.org/) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) may also work, but are not primarily tested.
-* Ensure that you have git command line installed or a tool that can clone Git repositories.   
-* Clone this repo
+* Ensure that you have git command line installed or a tool that can clone Git repositories.
+* Install [STM32CUbeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) 
+and [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) Version 2.10 or greater.
+* Clone this repo.
 * Download the [X-CUBE-AZURE Expansion Package](https://www.st.com/en/embedded-software/x-cube-azure.html) version 2.3.0, 
 and place the zip into the the root directory of the cloned repository.
 * In a bash shell, execute:
@@ -26,13 +28,26 @@ IoTConnect/scripts/setup-project.sh
 * In STM32CubeIDE, select *File -> Open Projects from File System*.
 * Select the directory **Projects/B-U585I-IOT02A/Applications/TFM_Azure_IoT** 
 directory of this repo in the dialog box and click *Finish*.
-* Uncheck the **TFM_Azure_IoT** top level root project and leave the other project checked like this:
+* Uncheck the **TFM_Azure_IoT** top level root project and leave the other projects checked like this:
 
 ![Import Project Screenshot](media/import-project-tfm.png "Import Project Screenshot]")
 
 * Build the TFM_Appli/TFM_Appli_Secure project. This will trigger the build for all other components
 except for the Non-Secure application.
-* After the Secure build completes, build the TFM_Appli/TFM_Appl_NonSecure project.
+* After the Secure build completes, build the TFM_Appli/TFM_Appl_NonSecure project. 
+Though this build depends on TFM_Appli_Secure, the direct build dependency is removed in order to 
+save on compilation time.
+* Once the application builds successfully:
+    * Switch the board into TFM mode by executing (double-click in the IDE) regression.bat 
+        in the TFM_SBSFU_Boot project.
+        Once this script is executed, the board will no longer run non-TFM applications.
+        If you wish to undo this action and re-enable non-TFM proejct support, you can 
+        execute the STM32U5_TrustZone_Disable.sh script.
+    * Upload all built components with TFM_UPDATE.bat.
+    * In the future, if you make changes only to the application, you can run APP_UPDATE_NS.bat instead.
+* If you wish to debug the application, once the application is loaded and running, 
+  you can attach the debugger to a running application with the provided debug launch script.
+
 
 ### IoTConnect Subscription Information
 
