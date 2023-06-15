@@ -4,19 +4,32 @@ This document aims to provide a step-by-step-guide way to test and evaluate the
 [B-U585I-IOT02A STM32U4 Discovery kit for IoT](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) board 
 with IoTConnect.
 
+The project development is currently supported only on Windows.
 
-### Project Build
-
-The software must be built and programmed onto the board by using the following steps:
-
-* If on Windows, download and install either [Git Bash](https://git-scm.com/downloads) (Select to install Git Bash in the Setup Wizard). 
+* Download and install either [Git Bash](https://git-scm.com/downloads) (Select to install Git Bash in the Setup Wizard). 
 [MSYS2](https://www.msys2.org/) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) may also work, but are not primarily tested.
 * Ensure that you have git command line installed or a tool that can clone Git repositories.
 * Install [STM32CUbeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) 
 and [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) Version 2.10 or greater.
-* Clone this repo.
+
+### Project Setup With X-Cube-IoTConnect zip
+
+If you did not download the X-Cube-IoTConnect zip package, 
+skip to the [Project Setup With Git](#project-setup-with-git) section.
+
+* Extract the zip into a directory, preferably at the root of C: or another drive. 
+Windows has a path name limit of 256 characters which can cause the build to fail, 
+as some of the source files are deeply nested into directories.
+
+### Project Setup With Git
+
+If you downloaded the X-Cube-IoTConnect zip package, skip all the setup steps in this section.
+
+* Clone this repo into a directory, preferably at the root of C: or another drive.
+Windows has a path name limit of 256 characters which can cause the build to fail,
+as some of the source files are deeply nested into directories.
 * Download the [X-CUBE-AZURE Expansion Package](https://www.st.com/en/embedded-software/x-cube-azure.html) version 2.3.0, 
-and place the zip into the the root directory of the cloned repository.
+and place the zip into the the root directory of this cloned repository.
 * In a bash shell, execute:
 
 ```shell
@@ -24,10 +37,14 @@ cd <root of this repo>
 IoTConnect/scripts/setup-project.sh 
 ```
 
+### Project Build
+
+The software must be built and programmed onto the board by using the following steps:
+
 * Download, install and open the [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html).
+* Choose an arbitrary workspace path to use for the project when prompted.
 * In STM32CubeIDE, select *File -> Open Projects from File System*.
-* Select the directory **Projects/B-U585I-IOT02A/Applications/TFM_Azure_IoT** 
-directory of this repo in the dialog box and click *Finish*.
+* Select **Projects/B-U585I-IOT02A/Applications/TFM_Azure_IoT**.
 * Uncheck the **TFM_Azure_IoT** top level root project and leave the other projects checked like this:
 
 ![Import Project Screenshot](media/import-project-tfm.png "Import Project Screenshot]")
@@ -41,10 +58,10 @@ save on compilation time.
     * Switch the board into TFM mode by executing (double-click in the IDE) regression.bat 
         in the TFM_SBSFU_Boot project.
         Once this script is executed, the board will no longer run non-TFM applications.
-        If you wish to undo this action and re-enable non-TFM proejct support, you can 
+        If you wish to undo this action and re-enable non-TFM project support, you can 
         execute the STM32U5_TrustZone_Disable.sh script.
     * Upload all built components with TFM_UPDATE.bat.
-    * In the future, if you make changes only to the application, you can run APP_UPDATE_NS.bat instead.
+    * In the future, if you make only non-secure application changes, you can run APP_UPDATE_NS.bat instead.
 * If you wish to debug the application, once the application is loaded and running, 
   you can attach the debugger to a running application with the provided debug launch script.
 
