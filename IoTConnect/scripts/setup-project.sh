@@ -46,8 +46,7 @@ END
 
   cp -rf IoTConnect Projects Drivers Middlewares Utilities README.md "${package_name}/"
   zip -r "${package_name}.zip" "${package_name}"
-  #rm -rf "${package_name}"
+  rm -rf "${package_name}"
 fi
-
 
 echo "Done."
