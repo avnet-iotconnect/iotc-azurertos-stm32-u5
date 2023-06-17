@@ -26,8 +26,14 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+
+#if (USE_WIFI == 1)
 #include "mx_wifi.h"
-  
+#else // we have no source for these values
+#define MX_MAX_SSID_LEN (64)
+#define MX_MAX_KEY_LEN (128)
+#endif
+
 #define METADATA_SUCCESS 0
 #define METADATA_ERROR   (!METADATA_SUCCESS)
 

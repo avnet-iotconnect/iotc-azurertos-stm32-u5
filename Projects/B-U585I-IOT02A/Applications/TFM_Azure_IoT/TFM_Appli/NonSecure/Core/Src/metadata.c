@@ -18,8 +18,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "metadata.h"
 #include "psa/protected_storage.h"
+#include "stm32u5xx_hal.h" // for resolution to NVIC_SystemReset()
 
 #define METADATA_UID 1 // ID in PSA storage
 
@@ -152,7 +154,7 @@ static uint32_t metadata_get_data(void) {
 
 	err = psa_ps_get(METADATA_UID, 0, sizeof(md), &md, &actual_size);
 
-	if (err != BSP_ERROR_NONE) {
+	if (err) {
 		printf("Failed to get metadata\r\n");
 		return METADATA_ERROR;
 	}
@@ -191,7 +193,7 @@ static uint32_t metadata_write_data(void) {
 
 	err = psa_ps_set(METADATA_UID, sizeof(md), &md, 0);
 
-	if (err != BSP_ERROR_NONE) {
+	if (err) {
 		return METADATA_ERROR;
 	}
 
