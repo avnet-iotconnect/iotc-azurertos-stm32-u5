@@ -43,10 +43,10 @@ void memory_test(void) {
     for (; i < TEST_BLOCK_COUNT; i++) {
         void *ptr = malloc(TEST_BLOCK_SIZE);
         // printf("0x%lx\r\n", (unsigned long) ptr);
+        blocks[i] = ptr;
         if (!ptr) {
             break;
         }
-        blocks[i] = ptr;
     }
     printf("====Allocated %d blocks of size %d (of max %d)===\r\n", i, TEST_BLOCK_SIZE, TEST_BLOCK_COUNT);
     for (int j = i-1; j >= 0; j--) {
@@ -467,7 +467,15 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
     	int j = 0;
 #endif
         // send telemetry periodically
-        for (int i = 0; i < 36000; i++) { // if 1 msg per second = 10 hours
+#if (USE_CELLULAR == 1)
+    	const int num_messages =  10;
+    	const int message_delay = 30000;
+#else
+    	// if 1 msg per second = 10 hours
+    	const int num_messages =  36000;
+    	const int message_delay = 1000;
+#endif
+        for (int i = 0; i < num_messages; i++) {
             if (iotconnect_sdk_is_connected()) {
 #ifdef HTTP_TEST
             	if (j >= 5) {
@@ -476,7 +484,7 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
             	j++;
 #endif
                 publish_telemetry();  // underlying code will report an error
-                iotconnect_sdk_poll(1000);
+                iotconnect_sdk_poll(message_delay);
             } else {
                 return false;
             }
