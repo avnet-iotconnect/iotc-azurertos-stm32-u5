@@ -450,6 +450,16 @@ static VOID App_Azure_IoT_Thread_Entry(ULONG thread_input)
     printf("dns_create fail: %u\r\n", ret);
     Error_Handler();
   }
+#if (USE_CELLULAR == 1)
+    /* Make sure the link is up. */
+    ULONG link_status;
+    ret = nx_ip_interface_status_check(&IpInstance, 0U, NX_IP_LINK_ENABLED, &link_status, NX_WAIT_FOREVER);
+    while (ret != NX_SUCCESS) {
+    	printf("SNTP waiting for link to come up...\r\n");
+    	tx_thread_sleep(2000);
+    }
+	printf("Link is up\r\n");
+#endif /* USE_CELLULAR == 1 */
 
     /* Sync up time by SNTP at start up. */
   ret = sntp_time_sync(&IpInstance, &AppPool, &DnsClient, SAMPLE_SNTP_SERVER_NAME);
