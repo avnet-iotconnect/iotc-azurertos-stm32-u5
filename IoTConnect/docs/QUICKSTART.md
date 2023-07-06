@@ -75,6 +75,7 @@ Using the serial terminal is the best way to identify issues. Common issues can 
 * Output stopping before data is sent:  Verify CPID and Environment names
 * Output stopping with "No Device Found":  Ensure a new device was created in the portal and that the DUID matches the Device ID
 * A firmware update with *tfm-udpdate.bat* may fail with an error *[ERR] Unable to find bootable image* during startup. Running *tfm-update.bat* and then *trust-zone-enable.bat* again should clear the error.
+* After an upodate, you may see an error in the log *[ERR] Error while initializing the security counter*. Simply resetting the board should clear the error.
 
 ## Further Reading
 * Visualize the data using Dynamic Dashboards
