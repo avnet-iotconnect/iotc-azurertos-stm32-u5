@@ -74,6 +74,7 @@ Using the serial terminal is the best way to identify issues. Common issues can 
 * Output stopping with a message about "IP Address":  Ensure valid WiFI credentials are used and that the network has an operational DHCP server.
 * Output stopping before data is sent:  Verify CPID and Environment names
 * Output stopping with "No Device Found":  Ensure a new device was created in the portal and that the DUID matches the Device ID
+* A firmware update with *tfm-udpdate.bat* may fail with an error *[ERR] Unable to find bootable image* during startup. Running *tfm-update.bat* and then *trust-zone-enable.bat* again should clear the error.
 
 ## Further Reading
 * Visualize the data using Dynamic Dashboards
