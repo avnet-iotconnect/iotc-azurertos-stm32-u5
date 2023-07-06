@@ -13,7 +13,8 @@ this_dir=$(dirname "$0")
 
 function usage {
   echo "Usage: $0 <fw_filename_path> <fw_version> <fw_provider> <fw_name> [[device manufacturer] [device model]]" >&2
-  echo "If either the device model and manufacturer are not provided, default values will be used." >&2
+  echo "The non-secure app file is usually located at Projects/B-U585I-IOT02A/Applications/TFM_Azure_IoT/TFM_Appli/Binary/tfm_ns_app_enc_sign.bin"
+  echo "If either the device model or manufacturer are not provided, default values will be used." >&2
   echo "Example:" >&2
   echo "    "$(dirname "$0")"/adu-generate-package.sh ./fw1.1.0.bin 1.1.0 AVNET SAMPLEAPP" >&2
 }
