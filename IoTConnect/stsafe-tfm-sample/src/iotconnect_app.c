@@ -346,26 +346,6 @@ void app_on_user_button_pushed(void) {
     std_component_on_button_pushed(&std_comp);
 }
 
-#ifdef HTTP_TEST
-static void http_test(void) {
-    IotConnectHttpRequest req = { 0 };
-
-    req.azrtos_config = &azrtos_config;
-    req.host_name = "discovery.iotconnect.io";
-    req.resource = "/";
-    req.tls_cert = (unsigned char*) IOTCONNECT_GODADDY_G2_ROOT_CERT;
-    req.tls_cert_len = IOTCONNECT_GODADDY_G2_ROOT_CERT_SIZE;
-
-    UINT status = iotconnect_https_request(&req);
-
-    if (status != NX_SUCCESS) {
-        printf("HTTP test: error code: %x data: %s\r\n", status, req.response);
-    } else {
-    	printf("HTTP test successful\r\n");
-    }
-}
-#endif
-
 /* Include the sample.  */
 bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
     printf("Starting App Version %s\r\n", APP_VERSION);
@@ -383,7 +363,7 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
     if (!md->cpid || !md->env || strlen(md->cpid) == 0 || strlen(md->env) == 0) {
     	printf("ERROR: CPID and Environment must be set in settings\r\n");
     }
-    
+
 	UINT status;
     if ((status = std_component_init(&std_comp, (UCHAR *)std_component_name,  sizeof(std_component_name) - 1))) {
         printf("Failed to initialize %s: error code = 0x%08x\r\n", std_component_name, status);
@@ -455,17 +435,17 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
         }
 
         tx_thread_sleep(1000);
-        iothub_start_device_agent(
+        status = iothub_start_device_agent(
             IOTC_ADU_STM,
-            IOTC_ADU_STM32U5,
-            NULL, // not used
-            NULL, // not used
+			IOTC_ADU_STM32U5, // IOTC_ADU_STM32U5,
+            NULL, // not used in NetX 6.2.0 and later
+            NULL, // not used in NetX 6.2.0 and later
             APP_VERSION
             );
+        if (status) {
+            printf("Unable to initialize the Azure Device Update agent.\r\n");
+        }
 
-#ifdef HTTP_TEST
-    	int j = 0;
-#endif
         // send telemetry periodically
 #if (USE_CELLULAR == 1)
     	const int num_messages =  10;
@@ -477,12 +457,6 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
 #endif
         for (int i = 0; i < num_messages; i++) {
             if (iotconnect_sdk_is_connected()) {
-#ifdef HTTP_TEST
-            	if (j >= 5) {
-            		http_test();
-            	}
-            	j++;
-#endif
                 publish_telemetry();  // underlying code will report an error
                 iotconnect_sdk_poll(message_delay);
             } else {
