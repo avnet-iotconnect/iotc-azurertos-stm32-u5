@@ -60,7 +60,7 @@ A Device Template with Self Signed authentication type will need to be imported.
 ## IoTConnect Device Setup
 * Create a new device in the IoTConnect portal. (Follow the [Create a New Device](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/create_new_device.md) guide for a detailed walkthrough.)
 * Enter a the DUID saved from earlier in the *Unique ID* field and enter a descriptive *Display Name* of your choice.
-* Select the template from the dropdwon box that was just imported.
+* Select the template from the dropdown box that was just imported.
 * Enter the Fingerprint calculated in the "Device Configuration" step into the Thumbprint field.
 * Click Save and press the Reset button.
 
