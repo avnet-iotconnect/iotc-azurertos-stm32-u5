@@ -44,7 +44,6 @@
 									<listOptionValue builtIn="false" value="USE_WIFI=1"/>
 									<listOptionValue builtIn="false" value="IOTC_ROUTE_MALLOC_TO_TX_BYTE_POOL"/>
 									<listOptionValue builtIn="false" value="IOTC_ENABLE_ADU_SUPPORT"/>
-									<listOptionValue builtIn="false" value="IOTC_HTTP_RAM_USAGE_HACK"/>
 									<listOptionValue builtIn="false" value="IOTC_NEEDS_C_TIME"/>
 									<listOptionValue builtIn="false" value="IOTC_USE_PSA_CIPHERS"/>
 									<listOptionValue builtIn="false" value="IOTC_NEEDS_GETTIMEOFDAY"/>
@@ -254,7 +253,6 @@
 									<listOptionValue builtIn="false" value="USE_CELLULAR=1"/>
 									<listOptionValue builtIn="false" value="IOTC_ROUTE_MALLOC_TO_TX_BYTE_POOL"/>
 									<listOptionValue builtIn="false" value="IOTC_ENABLE_ADU_SUPPORT"/>
-									<listOptionValue builtIn="false" value="IOTC_HTTP_RAM_USAGE_HACK"/>
 									<listOptionValue builtIn="false" value="IOTC_NEEDS_C_TIME"/>
 									<listOptionValue builtIn="false" value="IOTC_USE_PSA_CIPHERS"/>
 									<listOptionValue builtIn="false" value="IOTC_NEEDS_GETTIMEOFDAY"/>
