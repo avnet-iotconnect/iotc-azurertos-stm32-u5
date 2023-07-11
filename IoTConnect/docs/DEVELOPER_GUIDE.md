@@ -45,22 +45,22 @@ The software must be built and programmed onto the board by using the following 
 except for the Non-Secure application.
 * After the Secure build completes, build the TFM_Appli/TFM_Appl_NonSecure project.
 Though this build depends on TFM_Appli_Secure, the direct build dependency is removed in order to 
-save on compilation  when developing the application.
+save on compilation when developing the application.
 * Once the application builds successfully:
-    * Switch the board into TFM mode by executing (double-click in the IDE) regression.bat 
+    * Switch the board into TFM mode by executing (double-click in the IDE) regression.sh 
         in the TFM_SBSFU_Boot project.
         Once this script is executed, the board will no longer run non-TFM applications.
         If you wish to undo this action and re-enable non-TFM project support, you can 
         execute the STM32U5_TrustZone_Disable.sh script.
-    * Upload all built components with TFM_UPDATE.bat.
-    * In the future, if you make only non-secure application changes, you can run APP_UPDATE_NS.bat instead.
+    * Run TFM_UPDATE.sh from the <> project. This will upload all built components.
+    * In the future, if you make only non-secure application changes, you can run APP_UPDATE_NS.sh instead.
 
 ![Firmware Upload Scripts](media/fw-upload-scripts.png "Firmware Upload Scripts]")
 
 * If you wish to debug the application, you can attach the debugger to a 
 running application with the provided debug launch script.
 
-* ![Application Debugging](media/fw-upload-scripts.png "Application Debugging]")
+* ![Application Debugging](media/app-debug.png "Application Debugging]")
 
 
 ### IoTConnect Subscription Information
@@ -88,5 +88,18 @@ A Device Template with Self Signed authentication type will need to be imported.
 * Download the premade [Device Template with Self-Signed Auth](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/templates/devices/stm32u5/stm32u5self_signed_template.JSON).
 * Import the template into your IoTConnect instance. (A guide on [Importing a Device Template](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/import_device_template.md) is available or for more information on [Template Management](https://docs.iotconnect.io/iotconnect/user-manuals/devices/template-management/), please see the [IoTConnect Documentation](https://iotconnect.io) website.)
 
-### Known Issues
-* The OTA and ADU support features should not be used. These features are still work in progress.
+# Using OTA or ADU
+When updating the firmware with OTA or ADU, make sure to use the *Projects\B-U585I-IOT02A\Applications\TFM_Azure_IoT\TFM_Appli\Binary\tfm_ns_app_enc_sign.bin* file.
+
+## Troubleshooting
+* Output stopping with a message about "IP Address":  Ensure valid WiFI credentials are used and that the network has an operational DHCP server.
+* Output stopping before data is sent:  Verify CPID and Environment names.
+* Output stopping with "No Device Found":  Ensure a new device was created in the portal and that the DUID matches the Device ID
+* When flashing the board for the first time, you may encounter an error *Error while initializing the security counter*. In that case, reset the board. 
+* A firmware update with *tfm-update.bat* may fail with an error *[ERR] Unable to find bootable image* during startup. Running *tfm-update.bat* and then *trust-zone-enable.bat* again should clear the error.
+* After an update, you may see an error in the log *[ERR] Error while initializing the security counter*. Simply resetting the board should clear the error.
+* A blank screen may appear after flashing. The following steps may recover the board:
+  * Erase the board using the full chip erase option using the STM32CubeProgrammer GUI.
+  * Run *STM32U5_TrustZone_Disable.sh* and then *regression.sh* again.
+  * Flash the board again with *TFM_UPDATE.sh*.
+

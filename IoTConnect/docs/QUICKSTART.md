@@ -25,7 +25,7 @@ guide and return to this guide once complete.
 
 ## Firmware Setup
 
-* Download and extract the latest [binary package](https://saleshosted.z13.web.core.windows.net/sdk/AzureRTOS/stm32u5-tfm-package-050223.zip) zip file.
+* Download and extract the latest [binary package](https://saleshosted.z13.web.core.windows.net/sdk/AzureRTOS/stm32u5-tfm-package-1.1.1.zip) zip file.
 * Connect a USB cable to the Micro USB slot of the B-U585I-IOT02A board.
 * Execute the *trust-zone-enable.bat* batch script included in the package.<br>This will enable the TrustZone feature which is required to run the next step.
 Running this script will make it so that only TrustZone enabled applications are authorized to run on the board. This only needs to be run once per board.
@@ -72,10 +72,15 @@ At this point the board should be sending telemetry to the IoTConnect portal. We
 ## Troubleshooting
 Using the serial terminal is the best way to identify issues. Common issues can be resolved by verifying the following items:
 * Output stopping with a message about "IP Address":  Ensure valid WiFI credentials are used and that the network has an operational DHCP server.
-* Output stopping before data is sent:  Verify CPID and Environment names
+* Output stopping before data is sent:  Verify CPID and Environment names.
 * Output stopping with "No Device Found":  Ensure a new device was created in the portal and that the DUID matches the Device ID
-* A firmware update with *tfm-udpdate.bat* may fail with an error *[ERR] Unable to find bootable image* during startup. Running *tfm-update.bat* and then *trust-zone-enable.bat* again should clear the error.
-* After an upodate, you may see an error in the log *[ERR] Error while initializing the security counter*. Simply resetting the board should clear the error.
+* When flashing the board for the first time, you may encounter an error *Error while initializing the security counter*. In that case, reset the board. 
+* A firmware update with *tfm-update.bat* may fail with an error *[ERR] Unable to find bootable image* during startup. Running *tfm-update.bat* and then *trust-zone-enable.bat* again should clear the error.
+* After an update, you may see an error in the log *[ERR] Error while initializing the security counter*. Simply resetting the board should clear the error.
+* A blank screen may appear after flashing. The following steps may recover the board:
+  * Erase the board using the full chip erase option using the STM32CubeProgrammer GUI.
+  * Run *trust-zone-disable.bat* and then *trust-zone-disable.bat* again.
+  * Flash the board again with *tfm-update.bat*.
 
 ## Further Reading
 * Visualize the data using Dynamic Dashboards

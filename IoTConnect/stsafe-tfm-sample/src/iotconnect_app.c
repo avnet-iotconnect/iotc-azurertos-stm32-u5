@@ -29,7 +29,7 @@ static IotConnectAzrtosConfig azrtos_config;
 static IotcAuthInterfaceContext auth_driver_context = NULL;
 
 static char common_name_buffer[IOTC_COMMON_NAME_MAX_LEN + 1];
-#define APP_VERSION "1.1.0"
+#define APP_VERSION "1.1.1"
 #define std_component_name "std_comp"
 
 
