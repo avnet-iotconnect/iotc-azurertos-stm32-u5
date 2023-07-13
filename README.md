@@ -1,5 +1,5 @@
-# x-cube-iotconnect-azrtos-u5
-IoTConnect X-Cube SDK Package for the [STM32U5 IoT Discovery Kit](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html)
+# IoTConnect SDK Package for STM32U5
+SDK and sample application to connect [STM32U5 IoT Discovery Kit](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) to IoTConnect.
 
 ![Board Image](IoTConnect/docs/media/top-90.png)
 
