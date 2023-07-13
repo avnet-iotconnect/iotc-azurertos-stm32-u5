@@ -22,10 +22,10 @@ as some of the source files are deeply nested into directories.
 * Download the [X-CUBE-AZURE Expansion Package](https://www.st.com/en/embedded-software/x-cube-azure.html) version 2.3.0, 
 and place the zip into the the root directory of this cloned repository.
 * In a bash shell, execute setup-project.sh. For example, if this repo is cloned into
-C:\x-cube-iotconnect
+C:\iotc-azuretos-stm32-u5
 
 ```shell
-cd /c/x-cube-iotconnect
+cd /c/iotc-azuretos-stm32-u5
 IoTConnect/scripts/setup-project.sh 
 ```
 
