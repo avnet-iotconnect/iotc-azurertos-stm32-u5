@@ -294,7 +294,7 @@ UINT MX_NetXDuo_Init(VOID *memory_ptr)
   }
 
   /* create the Azure IoT application thread */
-  ret = tx_thread_create(&AppAzureIotThread, "Azure IoT Thread", App_Azure_IoT_Thread_Entry, 0, pointer, THREAD_MEMORY_SIZE,
+  ret = tx_thread_create(&AppAzureIotThread, "Azure IoT Thread", App_Azure_IoT_Thread_Entry, 0, pointer, 8 * 1026,
                          APP_PRIORITY, APP_PRIORITY, TX_NO_TIME_SLICE, TX_DONT_START);
 
   if (ret != TX_SUCCESS)
