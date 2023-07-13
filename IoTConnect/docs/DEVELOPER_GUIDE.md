@@ -43,7 +43,7 @@ The software must be built and programmed onto the board by using the following 
 * If you wish to build for BG96 Cellular Module support, change the build configuration
 from the default *Release_WiFi* configuration to *Release_BG96* by right clicking the
 TFM_Appli/TFM_Appl_NonSecure project in the project explorer and navigating 
-to *Build-Configurations -> Set Active* to *Release_BG96*. 
+to *Build Configurations -> Set Active* to *Release_BG96*. 
 See the [BG96 Guide](BG96.md) for more information.
 
 * Build the TFM_Appli/TFM_Appli_Secure project. This will trigger the build for all other components

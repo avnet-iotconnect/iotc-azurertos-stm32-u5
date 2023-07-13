@@ -25,7 +25,10 @@ guide and return to this guide once complete.
 
 ## Firmware Setup
 
-* Download and extract the latest [binary package](https://saleshosted.z13.web.core.windows.net/sdk/AzureRTOS/stm32u5-tfm-package-1.1.1.zip) zip file.
+* Download and extract either of the following packages
+  * [WiFi 1.1.1](https://saleshosted.z13.web.core.windows.net/sdk/AzureRTOS/stm32u5-tfm-package-1.1.1.zip)
+  * [BG96 1.1.1](https://saleshosted.z13.web.core.windows.net/sdk/AzureRTOS/stm32u5-tfm-package-bg96-1.1.1.zip)
+* If using the BG96 binary, follow the [BG96 Guide](BG96.md)
 * Connect a USB cable to the Micro USB slot of the B-U585I-IOT02A board.
 * Execute the *trust-zone-enable.bat* batch script included in the package.<br>This will enable the TrustZone feature which is required to run the next step.
 Running this script will make it so that only TrustZone enabled applications are authorized to run on the board. This only needs to be run once per board.
@@ -36,8 +39,8 @@ Running this script will make it so that only TrustZone enabled applications are
 * Ensure your serial terminal application is running.
 * Press the RST button on the board and look for the "X-CUBE-AZURE" title block. This may take 1 or two presses of the button. (The reset button is the black button labled "RST" next to the only blue button on the top of the board.)
 * In your terminal application enter "y" when prompted to set device configuration. You will only need to set values 1-4.
-  * Configure your WiFi SSID (Network Name) by pressing 1
-  * Configure your WiFi Password by pressing 2
+  * Configure your WiFi SSID (Network Name) by pressing 1 (if running the WiFi version)
+  * Configure your WiFi Password by pressing 2 (if running the WiFi version)
   * Set the values for your CPID and Environment by pressing 3 and 4 respectively. These values can be located 
 in  the IoTConnect WebUI on the *Key Vault* page. 
 Navigate there using the image below:<br>![Key Vault](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/assets/key_vault.png "Key Vault")
