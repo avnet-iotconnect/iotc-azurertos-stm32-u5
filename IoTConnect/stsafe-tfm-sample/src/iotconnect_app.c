@@ -302,7 +302,11 @@ static void publish_telemetry() {
     	iotcl_telemetry_set_number(msg, "gyroscope.x", std_comp.Gyro_X);
     	iotcl_telemetry_set_number(msg, "gyroscope.y", std_comp.Gyro_Y);
     	iotcl_telemetry_set_number(msg, "gyroscope.z", std_comp.Gyro_Z);
-
+#if (USE_CELLULAR == 1)
+    	iotcl_telemetry_set_string(msg, "network_type", "Cellular");
+#else
+    	iotcl_telemetry_set_string(msg, "network_type", "WiFi");
+#endif
     	// note the hook into app_azure_iot.c for button interrupt handler
     	iotcl_telemetry_set_number(msg, "button_counter", std_comp.ButtonCounter);
 
@@ -446,15 +450,17 @@ bool app_startup(NX_IP *ip_ptr, NX_PACKET_POOL *pool_ptr, NX_DNS *dns_ptr) {
             printf("Unable to initialize the Azure Device Update agent.\r\n");
         }
 
-        // send telemetry periodically
 #if (USE_CELLULAR == 1)
-    	const int num_messages =  10;
-    	const int message_delay = 30000;
+        // reduce data frequency for cellular so data plans don't get blown.
+    	// if 6 msg per minute = 10 hours
+    	const int num_messages =  3600;
+    	const int message_delay = 10000;
 #else
     	// if 1 msg per second = 10 hours
     	const int num_messages =  36000;
     	const int message_delay = 1000;
 #endif
+        // send telemetry periodically
         for (int i = 0; i < num_messages; i++) {
             if (iotconnect_sdk_is_connected()) {
                 publish_telemetry();  // underlying code will report an error
