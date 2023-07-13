@@ -1,6 +1,6 @@
 ## Introduction
 
-This document aims to provide a step-by-step-guide way to develeop firmware with the
+This document aims to provide a step-by-step-guide way to develop firmware with the
 [B-U585I-IOT02A STM32U4 Discovery kit for IoT](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) board 
 with IoTConnect.
 
@@ -40,6 +40,11 @@ The software must be built and programmed onto the board by using the following 
 * Uncheck the **TFM_Azure_IoT** top level root project and leave the other projects checked like this:
 
 ![Import Project Screenshot](media/import-project-tfm.png "Import Project Screenshot]")
+* If you wish to build for BG96 Cellular Module support, change the build configuration
+from the default *Release_WiFi* configuration to *Release_BG96* by right clicking the
+TFM_Appli/TFM_Appl_NonSecure project in the project explorer and navigating 
+to *Build-Configurations -> Set Active* to *Release_BG96*. 
+See the [BG96 Guide](BG96.md) for more information.
 
 * Build the TFM_Appli/TFM_Appli_Secure project. This will trigger the build for all other components
 except for the Non-Secure application.
