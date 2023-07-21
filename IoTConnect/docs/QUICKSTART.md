@@ -1,7 +1,7 @@
 ## Introduction
 
 This document provides a step-by-step-guide to program and evaluate the 
-[B-U585I-IOT02A STM32U4 Discovery kit for IoT](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) board 
+[B-U585I-IOT02A STM32U5 Discovery kit for IoT](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) board 
 with Trusted Firmware-M support on IoTConnect.
 
 This guide currently only supports Windows 64-bit.
@@ -11,8 +11,10 @@ This guide currently only supports Windows 64-bit.
 * Download and install the [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) for STM32.
   * Ensure that the installed version is 2.10 or newer.
   * Ensure the 64-bit version is installed to the default  directory "C:\Program Files\"
-* A serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), is required for the next steps. 
-Configure settings per the screenshot below:
+* A serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), 
+ or a browser application like [Google Chrome Labs Serial Terminal](https://googlechromelabs.github.io/serial-terminal/) 
+ is required for the next steps. 
+ Configure settings per the screenshot below:
 
 ![Tera Term Serial Settings](media/teraterm-settings.png "Tera Term Serial Settings")
 
@@ -52,7 +54,7 @@ Navigate there using the image below:<br>![Key Vault](https://github.com/avnet-i
 * A device fingerprint needs to be generated from the certificate.
   * Copy the Device Certificate from the console, including the BEGIN and END lines.
   * Paste the contents into the X509 Cert field at [this web site](https://www.samltool.com/fingerprint.php). (Optionally you can use openssl to print the device fingerprint, but this is outside the scope of this guide.)
-  * Leave the "Algorithum" selection at the default, press "Calculate Fingerprint" and copy/save the Fingerprint field for later use.
+  * Leave the "Algorithm" selection at the default SHA1, press "Calculate Fingerprint" and copy/save the Fingerprint field for later use.
 * Copy the generated DUID displayed and save for later use.
 
 ## IoTConnect Device Template Setup
@@ -62,7 +64,7 @@ A Device Template with Self Signed authentication type will need to be imported.
 
 ## IoTConnect Device Setup
 * Create a new device in the IoTConnect portal. (Follow the [Create a New Device](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/create_new_device.md) guide for a detailed walkthrough.)
-* Enter a the DUID saved from earlier in the *Unique ID* field and enter a descriptive *Display Name* of your choice.
+* Enter the DUID saved from earlier into the *Unique ID* field and enter a descriptive *Display Name* of your choice.
 * Select the template from the dropdown box that was just imported.
 * Enter the Fingerprint calculated in the "Device Configuration" step into the Thumbprint field.
 * Click Save and press the Reset button.

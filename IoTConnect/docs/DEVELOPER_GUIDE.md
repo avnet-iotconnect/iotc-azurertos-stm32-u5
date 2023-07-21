@@ -9,8 +9,8 @@ The project development is currently supported only on Windows.
 * Download and install either [Git Bash](https://git-scm.com/downloads) (Select to install Git Bash in the Setup Wizard). 
 [MSYS2](https://www.msys2.org/) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/about) 
 may also work, but are not primarily tested.
-* You can useit command line or a different tool that can clone Git repositories with submodule support.
-* Install [STM32CUbeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) 
+* You can use git command line or a different tool that can clone Git repositories with submodule support.
+* Install [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) 
 and [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) 
 Version 2.10 or greater.
 
@@ -81,8 +81,10 @@ A 2-Month Test Drive is available through the [IoTConnect Subscription Site](htt
 
 ### Device Setup
 
-* A serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en), is required for the next steps. 
-Configure settings per the screenshot below:
+* A serial console application, such as [Tera Term](https://ttssh2.osdn.jp/index.html.en),
+ or a browser application like [Google Chrome Labs Serial Terminal](https://googlechromelabs.github.io/serial-terminal/)
+ is required for the next steps. 
+ Configure settings per the screenshot below:
 
 ![Tera Term Serial Settings](media/teraterm-settings.png "Tera Term Serial Settings")
 
@@ -93,10 +95,10 @@ A Device Template with Self Signed authentication type will need to be imported.
 * Download the premade [Device Template with Self-Signed Auth](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/templates/devices/stm32u5/stm32u5self_signed_template.JSON).
 * Import the template into your IoTConnect instance. (A guide on [Importing a Device Template](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotconnect/import_device_template.md) is available or for more information on [Template Management](https://docs.iotconnect.io/iotconnect/user-manuals/devices/template-management/), please see the [IoTConnect Documentation](https://iotconnect.io) website.)
 
-# Using OTA or ADU
+### Using OTA or ADU
 When updating the firmware with OTA or ADU, make sure to use the *Projects\B-U585I-IOT02A\Applications\TFM_Azure_IoT\TFM_Appli\Binary\tfm_ns_app_enc_sign.bin* file.
 
-## Troubleshooting
+### Troubleshooting
 * Output stopping with a message about "IP Address":  Ensure valid WiFI credentials are used and that the network has an operational DHCP server.
 * Output stopping before data is sent:  Verify CPID and Environment names.
 * Output stopping with "No Device Found":  Ensure a new device was created in the portal and that the DUID matches the Device ID
