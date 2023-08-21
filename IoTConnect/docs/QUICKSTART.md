@@ -75,7 +75,7 @@ At this point the board should be sending telemetry to the IoTConnect portal. We
 * On the left sub-menu, click "Live Data" and after a few seconds, MQTT data should be shown. See below:<br>![image](https://github.com/avnet-iotconnect/iotc-azurertos-sdk/assets/40640041/21d25bbb-71d0-4a9d-9e74-e2acf0983183)
 
 ## Visualization
-The telemetry can be visualized by using the Dynamic Dashboard feature of IoTConnect.  A sample dashboard that is preconfigured to display some telemtery from the STM32U5 IoT Discovery Kit is available for download here.  Once downloaded, select "Create Dashboard" and then choose the "Import Dashboard" option and select the template and device name used previously in this guide.
+The telemetry can be visualized by using the Dynamic Dashboard feature of IoTConnect.  A sample dashboard that is preconfigured to display some telemtery from the STM32U5 IoT Discovery Kit is available for download here.  Once downloaded, select "Create Dashboard" from the top of the IoTConnect portal and then choose the "Import Dashboard" option and select the template and device name used previously in this guide.
 
 ## Troubleshooting
 Using the serial terminal is the best way to identify issues. Common issues can be resolved by verifying the following items:
@@ -89,6 +89,3 @@ Using the serial terminal is the best way to identify issues. Common issues can 
   * Erase the board using the full chip erase option using the STM32CubeProgrammer GUI.
   * Run *trust-zone-disable.bat* and then *trust-zone-disable.bat* again.
   * Flash the board again with *tfm-update.bat*.
-
-## Further Reading
-* Visualize the data using Dynamic Dashboards
