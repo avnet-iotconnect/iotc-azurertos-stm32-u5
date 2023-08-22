@@ -10,4 +10,4 @@ Use this Developer Guide to setup the project and modify the source to further d
 * [Developer Guide](https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotc-azurertos-stm32-u5/DEVELOPER_GUIDE.md)
 
 The BG96 Module from the [P-L496G-CELL02 Combo](https://www.st.com/en/evaluation-tools/p-l496g-cell02.html) is also 
-supported by this project. To run your board with this module, follow the respective BG96 sections linked in the Developer or Quickstart guides.
+supported by this project. To run your board with this module, follow the respective BG96 sections linked in the Developer or QuickStart guides.
