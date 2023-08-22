@@ -1,5 +1,5 @@
 # IoTConnect SDK for STM32-U5 based on X-Cube-Azure
-<img src="IoTConnect/docs/media/top-90.png" width="30%" height="20%" align="right"/>
+<img src="https://github.com/avnet-iotconnect/avnet-iotconnect.github.io/blob/main/documentation/iotc-azurertos-stm32-u5/media/stm32u5_board.png" width="30%" height="20%" align="right"/>
 
 SDK and sample application to connect [STM32U5 IoT Discovery Kit](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html) to IoTConnect.
 
