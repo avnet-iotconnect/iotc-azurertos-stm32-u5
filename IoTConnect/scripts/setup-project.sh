@@ -17,6 +17,7 @@ if [ ! -f ${cube_zip_name} ]; then
   exit 2
 fi
 
+(chmod -R a+w STM32CubeExpansion_Cloud_AZURE_* || true )2>/dev/null # the package has a problem where user has no write permissions
 rm -rf STM32CubeExpansion_Cloud_AZURE_*
 
 echo "Extracting files from ${cube_zip_name}..."
@@ -32,6 +33,7 @@ cp -nr Drivers Middlewares Projects Utilities .. # do not overwrite existing fil
 popd >/dev/null
 
 echo "Cleaning up..."
+chmod -R a+w STM32CubeExpansion_Cloud_AZURE_* # the package has a problem where user has no write permissions
 rm -rf STM32CubeExpansion_Cloud_AZURE_*
 
 if [  "${1}" == "package" ]; then
